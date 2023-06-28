@@ -14,7 +14,7 @@ def file_not_found(page: ft.Page):
 	page.window_resizable = False
 	page.window_height = 500
 	page.window_width = 800
-	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.tsv' в папке 'Документы'.", scale = 1.2))
+	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
 
 # def utf8_error(page: ft.Page):
 # 	page.bgcolor = 'RED'
@@ -70,13 +70,12 @@ elif len(files) == 1:
 	subject_final = file.readline().strip()
 	file = [x.strip('\n').split('	') for x in file.readlines()]
 
-shuffle(file)
-
 count_correct = 0
 count_wrong = 0
 index = 0
 
 if 'file' in globals():
+	shuffle(file)
 	question = file[index][0]
 	answer = file[index][1]
 	wrong_answer = choice(file[index][2:])
@@ -149,7 +148,6 @@ def main(page: ft.Page):
 	pb = ft.ProgressBar(height = 5, width = 500, color = "green", bgcolor = "red")
 
 	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final))
-
 
 if 'file' in globals():
 	ft.app(target = main)
