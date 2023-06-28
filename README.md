@@ -9,3 +9,4 @@
 ![изображение](https://github.com/MainEditor/QuickTests/assets/98752769/f424795a-d9e3-454c-bd83-8c9ce2034bbb)
 
 #Видео-инструкция по созданию файла:
+  https://clipchamp.com/watch/GRYm5qazP88
