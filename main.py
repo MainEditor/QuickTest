@@ -14,7 +14,7 @@ def file_not_found(page: ft.Page):
 	page.window_resizable = False
 	page.window_height = 500
 	page.window_width = 800
-	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
+	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.tsv' в папке 'Документы'.", scale = 1.2))
 
 # def utf8_error(page: ft.Page):
 # 	page.bgcolor = 'RED'
