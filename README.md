@@ -18,3 +18,5 @@
 
 # Видео-инструкция по созданию файла:
   https://clipchamp.com/watch/GRYm5qazP88
+# Написать автору:
+  https://t.me/MainEditor0
