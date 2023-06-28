@@ -61,7 +61,7 @@ def select(page: ft.Page):
 	page.add(text, *buttons)
 
 home_dir = str(Path.home()) + "\\Documents\\"
-files = [home_dir + f"\{f}" for f in os.listdir(home_dir) if fnmatch(f, "questions*.txt")]
+files = [home_dir + f"\{f}" for f in os.listdir(home_dir) if fnmatch(f, "questions*.tsv")]
 
 if len(files) >= 2:
 	ft.app(target = select)
