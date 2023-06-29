@@ -1,5 +1,6 @@
 # QuickTests
 Быстрые тесты на любую тему.
+
 ![изображение](https://github.com/MainEditor/QuickTests/assets/98752769/cfcbdf7c-c7ad-498d-b5c4-561bf7db5bed)
 
 # Как создать набор тестов?
