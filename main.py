@@ -16,18 +16,6 @@ def file_not_found(page: ft.Page):
 	page.window_width = 800
 	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
 
-# def utf8_error(page: ft.Page):
-# 	page.bgcolor = 'RED'
-# 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
-# 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-# 	page.spacing = 55
-# 	page.title = "QuickTest"
-# 	page.window_maximizable = False
-# 	page.window_resizable = False
-# 	page.window_height = 500
-# 	page.window_width = 800
-# 	page.add(ft.Text("Ошибка кодировки файла!", size = 50), ft.Text("Убедитесь, что файл 'questionsN.txt' в папке 'Документы' имеет кодировку UTF.", scale = 1.2))
-
 def select(page: ft.Page):
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -35,7 +23,6 @@ def select(page: ft.Page):
 	page.title = "QuickTest"
 	page.window_maximizable = False
 	page.window_resizable = False
-	page.window_height = 800
 	page.window_width = 500
 	page.scroll = ft.ScrollMode.HIDDEN 
 
@@ -49,12 +36,11 @@ def select(page: ft.Page):
 		subject_final = subject_selected
 		page.window_close()
 
-
 	for path in files:
 		cur_file = open(path, encoding = 'utf-8')
 		subject = cur_file.readline().strip()
 		data[subject] = [x.strip('\n').split('	') for x in cur_file.readlines()]
-		buttons += [ft.TextButton(subject, on_click = click, scale = 1.5)]
+		buttons += [ft.OutlinedButton(subject, on_click = click, scale = 1.5)]
 	
 	text = ft.Text("Выберите необходимую тему из списка:", size = 24)
 	
@@ -94,11 +80,11 @@ def update_data():
 def main(page: ft.Page):
 	def choose_button_randomly():
 		if randint(0, 1):
-			btn1.text, btn2.text = answer, wrong_answer
+			btn1.content.value, btn2.content.value = answer, wrong_answer
 		else:
-			btn1.text, btn2.text = wrong_answer, answer
+			btn1.content.value, btn2.content.value = wrong_answer, answer
 
-	def update_GUI(is_correct):
+	def update_GUI(is_correct: bool):
 		question_text.value = question
 		choose_button_randomly()
 		pb.value = count_correct / (count_wrong + count_correct)
@@ -111,41 +97,47 @@ def main(page: ft.Page):
 
 	def click_left(e):
 		global count_correct, count_wrong
-		is_correct = btn1.text == answer
-		if is_correct:
-			count_correct += 1
-		else:
-			count_wrong += 1
+		is_correct = btn1.content.value == answer
+		count_correct += is_correct
+		count_wrong += not is_correct
 		update_data()
 		update_GUI(is_correct)
 
 	def click_right(e):
 		global count_correct, count_wrong
-		is_correct = btn2.text == answer
-		if is_correct:
-			count_correct += 1
-		else:
-			count_wrong += 1
+		is_correct = btn2.content.value == answer
+		count_correct += is_correct
+		count_wrong += not is_correct
 		update_data()
 		update_GUI(is_correct)
 
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-	page.spacing = 45
+	page.scroll = ft.ScrollMode.ADAPTIVE 
+	page.spacing = 40
+	page.padding = 20
 	page.title = "QuickTest"
-	page.window_maximizable = False
+	# page.window_maximizable = False
 	page.window_resizable = False
-	page.window_height = 500
-	page.window_width = 800
+	page.window_height = 525
+	page.window_width = 825
 
-	question_text = ft.Text(question, size = 35)
-	banner = ft.Text("НАЧИНАЙ!", color = "white", size = 30, bgcolor = "")
-	counter = ft.Text(f'ВЕРНО👍        {count_correct} : {count_wrong}        👎НЕВЕРНО', size = 25)
-	btn1 = ft.ElevatedButton(answer, scale = 1.8, on_click = click_left, width = 170, elevation = 10)
-	btn2 = ft.ElevatedButton(wrong_answer, scale = 1.8, on_click = click_right, width = 170, elevation = 10)
-	row = ft.Row(spacing = 80, alignment = ft.MainAxisAlignment.CENTER, controls = [btn1, ft.Text('или', size = 20), btn2])
+	button_style = ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius=10), elevation = 5)
+
+	question_text = ft.Text(question, text_align = "center", size = 35)
+	banner = ft.Text("НАЧИНАЙ!", color = "white", size = 30)
+	counter = ft.Text(f'ВЕРНО👍        {count_correct} : {count_wrong}        👎НЕВЕРНО', size = 20)
+	btn1 = ft.ElevatedButton(style = button_style, content = ft.Text(answer, size = 23), on_click = click_left)
+	btn2 = ft.ElevatedButton(style = button_style, content = ft.Text(wrong_answer, size = 23), on_click = click_right)
+	row = ft.Row(wrap = True, alignment = ft.MainAxisAlignment.CENTER, controls = (ft.Text("←", size = 40), btn1, ft.Text("или", scale = 1.2), btn2, ft.Text("→", size = 40)))
 	
-	pb = ft.ProgressBar(height = 5, width = 500, color = "green", bgcolor = "red")
+	pb = ft.ProgressBar(height = 5, width = 500, color = "#70b658", bgcolor = "#eb4540")
+
+	def on_keyboard(e: ft.KeyboardEvent):
+		if e.key == "Arrow Left":	click_left(None)
+		elif e.key == "Arrow Right":	click_right(None)
+
+	page.on_keyboard_event = on_keyboard
 
 	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final))
 
