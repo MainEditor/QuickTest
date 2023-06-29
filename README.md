@@ -1,7 +1,8 @@
 # QuickTests
 Быстрые тесты на любую тему.
 
-![изображение](https://github.com/MainEditor/QuickTests/assets/98752769/cfcbdf7c-c7ad-498d-b5c4-561bf7db5bed)
+![изображение](https://github.com/MainEditor/QuickTests/assets/98752769/b3668e7c-e28c-4ceb-928a-5e4c905019ba)
+
 
 # Как создать набор тестов?
 Для создания набора тестов подойдёт любой табличный процессор. Структура таблицы должна (обязательно!) иметь следующий вид:
