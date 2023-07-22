@@ -39,7 +39,7 @@ def select(page: ft.Page):
 	for path in files:
 		cur_file = open(path, encoding = 'utf-8')
 		subject = cur_file.readline().strip()
-		data[subject] = [x.strip('\n').split('	') for x in cur_file.readlines()]
+		data[subject] = [x.strip('\n').strip('	').split('	') for x in cur_file.readlines()]
 		buttons += [ft.OutlinedButton(subject, on_click = click, scale = 1.5)]
 	
 	text = ft.Text("Выберите необходимую тему из списка:", size = 24)
@@ -54,7 +54,8 @@ if len(files) >= 2:
 elif len(files) == 1:
 	file = open(files[0], encoding = 'utf-8')
 	subject_final = file.readline().strip()
-	file = [x.strip('\n').split('	') for x in file.readlines()]
+	file = [x.strip('\n').strip('	').split('	') for x in file.readlines()]
+	print(file)
 
 count_correct = 0
 count_wrong = 0
@@ -118,7 +119,7 @@ def main(page: ft.Page):
 	page.padding = 20
 	page.title = "QuickTest"
 	# page.window_maximizable = False
-	page.window_resizable = False
+	# page.window_resizable = False
 	page.window_height = 525
 	page.window_width = 825
 
