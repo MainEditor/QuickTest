@@ -1,0 +1,1 @@
+flet pack --icon favico.ico --name QuickTest.exe --product-name QuickTest --product-version xx.xx --file-version xx.xx --copyright https://stepik.org/course/179843/promo main.py
