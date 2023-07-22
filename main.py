@@ -114,14 +114,12 @@ def main(page: ft.Page):
 
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-	page.scroll = ft.ScrollMode.ADAPTIVE 
+	page.scroll = ft.ScrollMode.AUTO
 	page.spacing = 40
 	page.padding = 20
 	page.title = "QuickTest"
-	# page.window_maximizable = False
-	# page.window_resizable = False
-	page.window_height = 525
-	page.window_width = 825
+	page.window_height = 550
+	page.window_width = 850
 
 	button_style = ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius=10), elevation = 5)
 
@@ -139,7 +137,6 @@ def main(page: ft.Page):
 		elif e.key == "Arrow Right":	click_right(None)
 
 	page.on_keyboard_event = on_keyboard
-
 	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final))
 
 if 'file' in globals():
