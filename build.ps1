@@ -10,7 +10,7 @@ if (Test-Path $path) {
 
 Move-Item $PWD"\dist\QuickTest.exe" "$ENV:USERPROFILE\Desktop"
 
-Remove-Item $PWD"\build" -Recurse
+Remove-Item $PWD"\build" --Recurse
 
 Remove-Item $PWD"\QuickTest.exe.spec"
 
