@@ -1,4 +1,4 @@
-$ver = Read-Host "Please enter your version in format YY.0M.0x"
+$ver = Read-Host "Please enter your version in format YY.0M"
 
 flet pack --icon favico.ico --name QuickTest.exe --product-name QuickTest --product-version $ver --file-version $ver --copyright https://stepik.org/course/179843/promo main.py
 
