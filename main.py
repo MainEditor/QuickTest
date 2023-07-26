@@ -7,7 +7,7 @@ from fnmatch import fnmatch
 def select(page: ft.Page):
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-	page.spacing = 20
+	page.spacing = 10
 	page.title = "QuickTest"
 	page.window_maximizable = False
 	page.window_resizable = False
@@ -18,7 +18,7 @@ def select(page: ft.Page):
 	data = dict()
 
 	def click(e):
-		subject_selected = e.control.text
+		subject_selected = e.control.content.value
 		global file, subject_final
 		file = data[subject_selected]
 		subject_final = subject_selected
@@ -28,7 +28,7 @@ def select(page: ft.Page):
 		cur_file = open(path, encoding = 'utf-8')
 		subject = cur_file.readline().strip()
 		data[subject] = [x.strip('\n').strip('	').split('	') for x in cur_file.readlines()]
-		buttons += [ft.OutlinedButton(subject, on_click = click, scale = 1.5)]
+		buttons += [ft.OutlinedButton(content=ft.Text(subject, size=18), on_click = click, width=450)]
 	
 	text = ft.Text("Выберите необходимую тему из списка:", size = 24)
 	
