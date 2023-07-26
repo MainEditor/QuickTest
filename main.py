@@ -55,7 +55,6 @@ elif len(files) == 1:
 	file = open(files[0], encoding = 'utf-8')
 	subject_final = file.readline().strip()
 	file = [x.strip('\n').strip('	').split('	') for x in file.readlines()]
-	print(file)
 
 count_correct = 0
 count_wrong = 0
@@ -90,6 +89,7 @@ def main(page: ft.Page):
 		choose_button_randomly()
 		pb.value = count_correct / (count_wrong + count_correct)
 		counter.value = f'ВЕРНО👍        {count_correct} : {count_wrong}        👎НЕВЕРНО'
+		number_of_question.value = f"{index + 1} / {len(file)}"
 		if is_correct:
 			banner.value, banner.bgcolor = "ВЕРНО", "green"
 		elif not is_correct:
@@ -124,10 +124,10 @@ def main(page: ft.Page):
 	button_style = ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius=10), elevation = 5)
 
 	question_text = ft.Text(question, text_align = "center", size = 35)
-	banner = ft.Text("НАЧИНАЙ!", color = "white", size = 30)
+	banner = ft.Text("Начинай!", color = "white", size = 30)
 	counter = ft.Text(f'ВЕРНО👍        {count_correct} : {count_wrong}        👎НЕВЕРНО', size = 20)
-	btn1 = ft.ElevatedButton(style = button_style, content = ft.Text(answer, size = 23), on_click = click_left)
-	btn2 = ft.ElevatedButton(style = button_style, content = ft.Text(wrong_answer, size = 23), on_click = click_right)
+	btn1 = ft.ElevatedButton(style = button_style, content = ft.Text(answer, size = 25), on_click = click_left)
+	btn2 = ft.ElevatedButton(style = button_style, content = ft.Text(wrong_answer, size = 25), on_click = click_right)
 	row = ft.Row(wrap = True, alignment = ft.MainAxisAlignment.CENTER, controls = (ft.Text("←", size = 40), btn1, ft.Text("или", scale = 1.2), btn2, ft.Text("→", size = 40)))
 	
 	pb = ft.ProgressBar(height = 5, width = 500, color = "#70b658", bgcolor = "#eb4540")
@@ -136,8 +136,10 @@ def main(page: ft.Page):
 		if e.key == "Arrow Left":	click_left(None)
 		elif e.key == "Arrow Right":	click_right(None)
 
+	number_of_question = ft.Text(f"{index + 1} / {len(file)}", size=18)
+
 	page.on_keyboard_event = on_keyboard
-	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final))
+	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final), number_of_question)
 
 if 'file' in globals():
 	ft.app(target = main)
