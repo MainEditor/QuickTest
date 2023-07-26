@@ -4,18 +4,6 @@ from pathlib import Path
 from random import choice, shuffle, randint
 from fnmatch import fnmatch
 
-def file_not_found(page: ft.Page):
-	page.bgcolor = 'RED'
-	page.vertical_alignment = ft.MainAxisAlignment.CENTER
-	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-	page.spacing = 55
-	page.title = "QuickTest"
-	page.window_maximizable = False
-	page.window_resizable = False
-	page.window_height = 500
-	page.window_width = 800
-	page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
-
 def select(page: ft.Page):
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
 	page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -145,6 +133,19 @@ try:
 	if 'file' in globals():
 		ft.app(target = main)
 	elif len(files) == 0:
+
+		def file_not_found(page: ft.Page):
+			page.bgcolor = 'RED'
+			page.vertical_alignment = ft.MainAxisAlignment.CENTER
+			page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+			page.spacing = 55
+			page.title = "QuickTest"
+			page.window_maximizable = False
+			page.window_resizable = False
+			page.window_height = 500
+			page.window_width = 800
+			page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
+			
 		ft.app(target = file_not_found)
 except Exception as e:
 	error_text = str(e)
@@ -162,4 +163,3 @@ except Exception as e:
 		page.add(ft.Text("Произошла непредвиденная ошибка!", size = 50), ft.Text(f"Отправьте скриншот данного окна в комментарии на курсе на страницу отчётов об ошибках и опишите ситуацию.\n{error_text}", scale = 1.2))
 
 	ft.app(target=error)
-	
