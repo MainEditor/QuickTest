@@ -141,9 +141,25 @@ def main(page: ft.Page):
 	page.on_keyboard_event = on_keyboard
 	page.add(banner, counter, question_text, row, pb, ft.Text(subject_final), number_of_question)
 
-if 'file' in globals():
-	ft.app(target = main)
-elif len(files) == 0:
-	ft.app(target = file_not_found)
-else:
-	...
+try:
+	if 'file' in globals():
+		ft.app(target = main)
+	elif len(files) == 0:
+		ft.app(target = file_not_found)
+except Exception as e:
+	error_text = str(e)
+
+	def error(page: ft.Page):
+		page.bgcolor = 'RED'
+		page.vertical_alignment = ft.MainAxisAlignment.CENTER
+		page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+		page.spacing = 55
+		page.title = "QuickTest"
+		page.window_maximizable = False
+		page.window_resizable = False
+		page.window_height = 500
+		page.window_width = 800
+		page.add(ft.Text("Произошла непредвиденная ошибка!", size = 50), ft.Text(f"Отправьте скриншот данного окна в комментарии на курсе на страницу отчётов об ошибках и опишите ситуацию.\n{error_text}", scale = 1.2))
+
+	ft.app(target=error)
+	
