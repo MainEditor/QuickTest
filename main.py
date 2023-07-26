@@ -34,7 +34,8 @@ def select(page: ft.Page):
 	
 	page.add(text, *buttons)
 
-home_dir = str(Path.home()) + "\\Documents\\"
+home_dir = str(Path.home()) + "\\Documents\\QuickTest\\"
+Path(home_dir).mkdir(exist_ok=True)
 files = [home_dir + f"\{f}" for f in os.listdir(home_dir) if fnmatch(f, "questions*.tsv")]
 
 if len(files) >= 2:
@@ -144,7 +145,7 @@ try:
 			page.window_resizable = False
 			page.window_height = 500
 			page.window_width = 800
-			page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questionsN.txt' в папке 'Документы'.", scale = 1.2))
+			page.add(ft.Text("Файл c вопросами не найден!", size = 50), ft.Text("Убедитесь, что существует файл 'questions*.tsv' в папке 'QuickTest' в папке 'Документы'.", scale = 1.2))
 			
 		ft.app(target = file_not_found)
 except Exception as e:
