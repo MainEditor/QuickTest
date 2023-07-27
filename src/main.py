@@ -3,7 +3,6 @@ import os
 from pathlib import Path
 from random import choice, shuffle, randint
 from fnmatch import fnmatch
-from libs import gui
 
 def select(page: ft.Page):
 	page.vertical_alignment = ft.MainAxisAlignment.CENTER
