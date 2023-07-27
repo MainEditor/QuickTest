@@ -19,15 +19,16 @@ def select(page: ft.Page):
 
 	def click(e):
 		subject_selected = e.control.content.value
-		global file, subject_final
-		file = data[subject_selected]
+		global file, subject_final, selected_path
+		file = data[subject_selected][0]
+		selected_path = data[subject_selected][1]
 		subject_final = subject_selected
 		page.window_close()
 
 	for path in files:
 		cur_file = open(path, encoding = 'utf-8')
 		subject = cur_file.readline().strip()
-		data[subject] = [x.strip('\n').strip('	').split('	') for x in cur_file.readlines()]
+		data[subject] = ([x.strip('\n').strip('	').split('	') for x in cur_file.readlines()], path)
 		buttons += [ft.OutlinedButton(content=ft.Text(subject, size=18), on_click = click, width=450)]
 	
 	text = ft.Text("Выберите необходимую тему из списка:", size = 24)
@@ -42,6 +43,7 @@ if len(files) >= 2:
 	ft.app(target = select)
 elif len(files) == 1:
 	file = open(files[0], encoding = 'utf-8')
+	selected_path = files[0]
 	subject_final = file.readline().strip()
 	file = [x.strip('\n').strip('	').split('	') for x in file.readlines()]
 
@@ -50,6 +52,11 @@ count_wrong = 0
 index = 0
 
 if 'file' in globals():
+	if file[-1][0].upper() == 'DATA':
+		data = list(map(float, file[-1][1:]))
+		file.pop()
+	else:
+		data = []
 	shuffle(file)
 	question = file[index][0]
 	answer = file[index][1]
