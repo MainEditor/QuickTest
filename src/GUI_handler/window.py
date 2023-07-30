@@ -12,7 +12,7 @@ def click(e=None, button=None) -> None:
 def on_keyboard(e: ft.KeyboardEvent):
     if e.key == "Arrow Left":	click(button=btn1)
     elif e.key == "Arrow Right":	click(button=btn2)
-
+    
 button_style = ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius=10), elevation = 5)
 
 question_text = ft.Text(data.question, text_align = "center", size = 35)
@@ -23,7 +23,7 @@ btn2 = ft.ElevatedButton(style = button_style, content = ft.Text(data.wrong_answ
 row = ft.Row(wrap = True, alignment = ft.MainAxisAlignment.CENTER, controls = (ft.Text("←", size = 40), btn1, ft.Text("или", scale = 1.2), btn2, ft.Text("→", size = 40)))
 progressBar = ft.ProgressBar(height = 8, width = 500, color = "#70b658", bgcolor = "#eb4540")
 number_of_question = ft.Text(f"{data.index + 1} / {len(data.file)}", size=18)
-back_button = ft.TextButton(content=ft.Row([ft.Icon(name=ft.icons.ARROW_BACK), ft.Text('Вернуться к списку тем')], width=200, alignment=ft.MainAxisAlignment.CENTER), on_click=data.return_to_select)
+back_button = ft.TextButton(content=ft.Row([ft.Icon(name=ft.icons.ARROW_BACK), ft.Text('Вернуться к списку тем')], width=200, alignment=ft.MainAxisAlignment.CENTER))
 
 UI = (banner, question_text, row, counter, progressBar, number_of_question, back_button)
 
