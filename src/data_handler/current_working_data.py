@@ -1,9 +1,13 @@
 from data_handler.data_reader import get_data
 from random import choice, shuffle
+from sys import exit
 
 index = count_correct = count_wrong = 0
 
 file, topic, working_file_path = get_data()
+
+if file == None:
+    exit()
 
 shuffle(file)
 
@@ -30,3 +34,10 @@ def update_question(is_correct: bool) -> None:
 
     answer_options = [answer, wrong_answer]
     shuffle(answer_options)
+
+# def return_to_select(e):
+#     global file, topic, working_file_path, index, count_correct, count_wrong
+#     file, topic, working_file_path = get_data()
+#     count_wrong = 0
+#     count_correct = index = -1
+#     update_question(1)
