@@ -51,11 +51,12 @@ class MainWindow():
 
         page.vertical_alignment = ft.MainAxisAlignment.CENTER
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        
+        page.window_height = page.window_min_height = 610
+        page.window_width = page.window_min_width = 860
+        page.window_center()
         page.scroll = ft.ScrollMode.AUTO
         page.spacing = 40
         page.title = "QuickTest"
-        page.window_height = page.window_min_height = 610
-        page.window_width = page.window_min_width = 860
+        
         page.on_keyboard_event = self.on_keyboard
         page.add(*self.UI)

@@ -12,6 +12,7 @@ class DataSelector():
         page.window_maximizable = False
         page.window_resizable = False
         page.window_width = 500
+        page.window_center()
         page.scroll = ft.ScrollMode.ADAPTIVE 
 
         buttons = []
