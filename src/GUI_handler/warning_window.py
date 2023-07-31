@@ -2,6 +2,8 @@ import flet as ft
 
 def warning_window(page: ft.Page) -> None:
     page.window_center()
+    page.window_focused = True
+    
     page.bgcolor = 'RED'
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER

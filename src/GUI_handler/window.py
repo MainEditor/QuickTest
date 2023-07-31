@@ -47,6 +47,8 @@ class MainWindow():
     
     def create_window(self, page: ft.Page):
         page.window_center()
+        page.window_focused = True
+        
         self.update = lambda: page.update()
         self.close = lambda: page.window_close()
 

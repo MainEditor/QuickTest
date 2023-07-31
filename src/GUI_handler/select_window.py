@@ -6,6 +6,7 @@ class DataSelector():
 
     def window(self, page: ft.Page):
         page.window_center()
+        page.window_focused = True
         page.vertical_alignment = ft.MainAxisAlignment.CENTER
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         page.spacing = 10
