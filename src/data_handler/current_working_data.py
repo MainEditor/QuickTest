@@ -1,43 +1,35 @@
 from data_handler.data_reader import get_data
 from random import choice, shuffle
-from sys import exit
 
-index = count_correct = count_wrong = 0
+class CurrentData():
+    def __init__(self):
+        self.file, self.topic, self.working_file_path = get_data()
 
-file, topic, working_file_path = get_data()
-
-if file == None:
-    exit()
-
-shuffle(file)
-
-question = file[index][0]
-answer = file[index][1]
-wrong_answer = choice(file[index][2:])
-answer_options = [answer, wrong_answer]
-shuffle(answer_options)
-
-def update_question(is_correct: bool) -> None:
-    global answer, question, wrong_answer, index, count_correct, count_wrong, answer_options
-    if index < len(file) - 1:
-        index += 1
-    else:
-        index = 0
-        shuffle(file)
-
-    count_wrong += not is_correct
-    count_correct += is_correct
+        if self.file == None:
+            return
+        
+        self.index = self.count_correct = self.count_wrong = 0
+        shuffle(self.file)
+        
+        self.question = self.file[self.index][0]
+        self.answer = self.file[self.index][1]
+        self.wrong_answer = choice(self.file[self.index][2:])
+        self.answer_options = [self.answer, self.wrong_answer]
+        shuffle(self.answer_options)
     
-    question = file[index][0]
-    answer = file[index][1]
-    wrong_answer = choice(file[index][2:])
+    def update_question(self, is_previous_ans_correct):
+        if self.index < len(self.file) - 1:
+            self.index += 1
+        else:
+            self.index = 0
+            shuffle(self.file)
+        
+        self.count_wrong += not is_previous_ans_correct
+        self.count_correct += is_previous_ans_correct
 
-    answer_options = [answer, wrong_answer]
-    shuffle(answer_options)
+        self.question = self.file[self.index][0]
+        self.answer = self.file[self.index][1]
+        self.wrong_answer = choice(self.file[self.index][2:])
 
-# def return_to_select(e):
-#     global file, topic, working_file_path, index, count_correct, count_wrong
-#     file, topic, working_file_path = get_data()
-#     count_wrong = 0
-#     count_correct = index = -1
-#     update_question(1)
+        self.answer_options = [self.answer, self.wrong_answer]
+        shuffle(self.answer_options)
