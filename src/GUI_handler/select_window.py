@@ -5,6 +5,7 @@ class DataSelector():
         self.file = self.subject_selected = self.select_path = None
 
     def window(self, page: ft.Page):
+        page.window_center()
         page.vertical_alignment = ft.MainAxisAlignment.CENTER
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         page.spacing = 10
@@ -12,9 +13,7 @@ class DataSelector():
         page.window_maximizable = False
         page.window_resizable = False
         page.window_width = 500
-        page.window_center()
         page.scroll = ft.ScrollMode.ADAPTIVE 
-
         buttons = []
         data = dict()
 
