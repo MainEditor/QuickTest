@@ -58,6 +58,7 @@ class MainWindow():
         page.window_width = page.window_min_width = 860
         page.scroll = ft.ScrollMode.AUTO
         page.spacing = 40
+        page.padding = 10
         page.title = "QuickTest"
 
         page.on_keyboard_event = self.on_keyboard
