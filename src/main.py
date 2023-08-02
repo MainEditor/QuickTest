@@ -1,16 +1,25 @@
+import GUI_handler.select_window
+import GUI_handler.statistics_window
 import GUI_handler.window
-import GUI_handler.warning_window
+from data_handler.data_writer import write_statistics
 
-import flet as ft
-
-try:
+def main():
     while True:
-        window = GUI_handler.window.MainWindow()
-        ft.app(target=window.create_window)
-        if not window.NEED_RESTART:
-            break
-except Exception as e:
-    if str(e) == "'CurrentData' object has no attribute 'question'":
-        pass
-    else:
-        GUI_handler.warning_window.create_warning_window("ПРОИЗОШЛА НЕПРЕДВИДЕННАЯ ОШИБКА!", f"Отпаравьте скриншот этого окна автору и опишите ситуацию возникновения ошибки, пожалуйста.\n{str(e)}")
+        select_window = GUI_handler.select_window.DataSelector()
+        if select_window.GO_TO == "STAT":
+            statistics = select_window.statistics
+            topic = select_window.topic
+            stat_window = GUI_handler.statistics_window.StatWindow(statistics, topic)
+            print(statistics)
+            if not stat_window.NEED_RETURN:
+                return 0
+        elif select_window.GO_TO == "TEST":
+            data = select_window.data
+            main_window = GUI_handler.window.MainWindow(data)
+            write_statistics(data[2], main_window.progressBar.value)
+            if not main_window.NEED_RETURN:
+                return 0
+        elif select_window.GO_TO == None:
+            return 0
+
+main()

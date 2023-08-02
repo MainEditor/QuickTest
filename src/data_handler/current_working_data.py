@@ -1,12 +1,9 @@
-from data_handler.data_reader import get_data
 from random import choice, shuffle
 
 class CurrentData():
-    def __init__(self):
-        self.file, self.topic, self.working_file_path = get_data()
+    def __init__(self, data):
 
-        if self.file == None:
-            return
+        self.file, self.topic, self.working_file_path  = data
         
         self.index = self.count_correct = self.count_wrong = 0
         shuffle(self.file)

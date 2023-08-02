@@ -2,9 +2,9 @@ import flet as ft
 import data_handler.current_working_data as DT
 
 class MainWindow():
-    def __init__(self):
-        self.data = DT.CurrentData()
-        self.NEED_RESTART = False
+    def __init__(self, data_set):
+        self.NEED_RETURN = False
+        self.data = DT.CurrentData(data_set)
         button_style = ft.ButtonStyle(shape = ft.RoundedRectangleBorder(radius=10), elevation = 5)
         self.question_text = ft.Text(self.data.question, text_align = "center", size = 35)
         self.banner = ft.Text("Начинай!", color = "white", size = 30, scale=1.25)
@@ -16,6 +16,7 @@ class MainWindow():
         self.number_of_question = ft.Text(f"{self.data.index + 1} / {len(self.data.file)}", size=18)
         self.back_button = ft.TextButton(content=ft.Row([ft.Icon(name=ft.icons.ARROW_BACK), ft.Text('Вернуться к списку тем')], width=200, alignment=ft.MainAxisAlignment.CENTER), on_click=self.go_back)
         self.UI = (self.banner, self.question_text, self.row, self.counter, self.progressBar, self.number_of_question, ft.Text(self.data.topic), self.back_button)
+        ft.app(target=self.create_window)
     
     def update_GUI(self, is_ans_correct: bool):
         self.question_text.value = self.data.question
@@ -42,7 +43,7 @@ class MainWindow():
         elif e.key == "Arrow Right":	self.click(button=self.btn2)
     
     def go_back(self, e):
-        self.NEED_RESTART = True
+        self.NEED_RETURN = True
         self.close()
     
     def create_window(self, page: ft.Page):
