@@ -10,7 +10,6 @@ def main():
             statistics = select_window.statistics
             topic = select_window.topic
             stat_window = GUI_handler.statistics_window.StatWindow(statistics, topic)
-            print(statistics)
             if not stat_window.NEED_RETURN:
                 return 0
         elif select_window.GO_TO == "TEST":
