@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QuickTest"
-#define MyAppVersion "23.08.3"
+; #define MyAppVersion "23.08.3"
 #define MyAppPublisher "Daud Kuchashev"
 #define MyAppURL "https://stepik.org/course/179843/promo"
 #define MyAppExeName "QuickTest.exe"

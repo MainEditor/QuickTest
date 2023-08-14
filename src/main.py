@@ -2,6 +2,7 @@ import GUI_handler.select_window
 import GUI_handler.statistics_window
 import GUI_handler.window
 from data_handler.data_writer import write_statistics
+import GUI_handler.warning_window
 
 def main():
     while True:
@@ -21,4 +22,8 @@ def main():
         elif select_window.GO_TO == None:
             return 0
 
-main()
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exception:
+        GUI_handler.warning_window.create_warning_window("Произошла ошибка. Отправьте отчёт автору, приложив скриншот этого окна", str(exception))
