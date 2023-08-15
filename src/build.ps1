@@ -7,7 +7,7 @@ $Source_exe_Location = $repo_path + "\src\dist\QuickTest\QuickTest.exe"
 $Source_other = $repo_path + "\src\dist\QuickTest\*"
 $LicenseLocation = $repo_path + "\LICENSE"
 
-Write-Output "`n`n"$InstallerLocation $InstallerIcon $Source_exe_Location $Source_other
+Write-Output "`n`n"$InstallerLocation $InstallerIcon $Source_exe_Location $Source_other $LicenseLocation
 
 Write-Output "`n`n==================== Start build and packing ====================`n`n"
 
