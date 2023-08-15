@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "QuickTest"
-; #define MyAppVersion "23.08.3"
+
 #define MyAppPublisher "Daud Kuchashev"
 #define MyAppURL "https://stepik.org/course/179843/promo"
 #define MyAppExeName "QuickTest.exe"
@@ -22,10 +22,10 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
-PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=C:\Users\Daud\Desktop\QuickTest
+; PrivilegesRequiredOverridesAllowed=dialog
+OutputDir={#InstallerLocation}
 OutputBaseFilename=QuickTest-setup-win64
-SetupIconFile=C:\Users\Daud\Desktop\QuickTest\src\favico.ico
+SetupIconFile={#InstallerIcon}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -37,8 +37,8 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Daud\Desktop\QuickTest\src\dist\QuickTest\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Daud\Desktop\QuickTest\src\dist\QuickTest\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#Source_exe_Location}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Source_other}"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
