@@ -19,11 +19,11 @@ flet pack --icon favico.ico `
     --copyright "https://stepik.org/course/179843/promo" `
     --onedir main.py
 
-iscc /dMyAppVersion=$ver `
-    /dInstallerLocation=$InstallerLocation `
-    /dInstallerIcon=$InstallerIcon `
-    /dSource_exe_Location=$Source_exe_Location `
-    /dSource_other=$Source_other `
-    /dLicenseLocation=$LicenseLocation pack_to_setup.iss
+iscc /dMyAppVersion = $ver `
+    /dInstallerLocation = $InstallerLocation `
+    /dInstallerIcon = $InstallerIcon `
+    /dSource_exe_Location = $Source_exe_Location `
+    /dSource_other = $Source_other `
+    /dLicenseLocation = $LicenseLocation pack_to_setup.iss
 
 Write-Output "`n`n==================== Build and packing done ====================`n`n"
