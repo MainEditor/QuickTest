@@ -29,6 +29,7 @@ SetupIconFile={#InstallerIcon}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+LicenseFile={#LicenseLocation}
 
 [Languages]
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
