@@ -3,7 +3,7 @@
 
 #define MyAppName "QuickTest"
 
-#define MyAppPublisher "Daud Kuchashev"
+#define MyAppPublisher "GitHub.com/MainEditor"
 #define MyAppURL "https://stepik.org/course/179843/promo"
 #define MyAppExeName "QuickTest.exe"
 
