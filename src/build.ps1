@@ -9,7 +9,7 @@ $LicenseLocation = $repo_path + "\LICENSE"
 
 Write-Output "`n"$InstallerLocation $InstallerIcon $Source_exe_Location $Source_other $LicenseLocation
 
-Write-Output "`n`n==================== Start build and packing ====================`n`n"
+Write-Output "`n`n==================== Start build and pack ====================`n`n"
 
 flet pack --icon favico.ico `
     --name QuickTest `
@@ -26,4 +26,4 @@ iscc /dMyAppVersion=$ver `
     /dSource_other=$Source_other `
     /dLicenseLocation=$LicenseLocation pack_to_setup.iss
 
-Write-Output "`n`n==================== Build and packing done ====================`n`n"
+Write-Output "`n`n==================== Build and pack done ====================`n`n"
