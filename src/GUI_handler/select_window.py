@@ -35,7 +35,7 @@ class DataSelector():
         self.data_dict = dict()
 
         for file_path in self.pathes_list:
-            cur_file = open(file_path, encoding = 'utf-8')
+            cur_file = open(file_path)
             subject = cur_file.readline().strip()
             self.data_dict[subject] = ([x.strip('\n').strip('	').split('	') for x in cur_file.readlines()], file_path)
             row = ft.Row(controls=[ft.OutlinedButton(content=ft.Text(value=subject, size=18), on_click = self.topic_click, width=425), 
