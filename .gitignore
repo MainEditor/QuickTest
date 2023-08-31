@@ -3,3 +3,4 @@ QuickTest-setup-win64.exe
 **\__pycache__\
 \dist
 \build
+*.pyc
